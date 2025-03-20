@@ -3,10 +3,8 @@ import TopNav from "../components/TopNav";
 
 const Layout = () => {
     return(
-        <div>
-            <div>
-                <TopNav/>
-            </div>
+        <div className="flex flex-col h-screen">    
+            <TopNav/>
             <Outlet/>
         </div>
     )
