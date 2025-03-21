@@ -1,6 +1,6 @@
 import SearchBox from "./SearchBox"
 import { useNavigate } from "react-router-dom"
-import OrderFood from "../page/OrderFood"
+import OrderFood from "../page/OrderFoods"
 import Evaluation from "../page/Evaluation"
 import Merchant from "../page/Merchant"
 

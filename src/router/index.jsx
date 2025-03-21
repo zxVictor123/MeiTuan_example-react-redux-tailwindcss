@@ -1,18 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "../Layout";
-import OrderFood from "../page/OrderFood";
+import OrderFoods from "../page/OrderFoods";
 import Evaluation from "../page/Evaluation";
 import Merchant from "../page/Merchant";
+import App from "../App";
 
 const router = createBrowserRouter(
     [
         {
             path:'/',
-            element:<Layout/>,
+            element:<App/>,
             children:[
                 {
                     index: true,
-                    element: <OrderFood />
+                    element: <OrderFoods />
                 },
                 {
                     path:'/Evaluation',
