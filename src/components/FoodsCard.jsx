@@ -21,7 +21,7 @@ const FoodsCard = (props) => {
             </div>
             {/* 中 */}
             <div className="flex h-1/5 items-center">
-                <div className="">{`月售${month_saled}份`}</div>
+                <div className="pr-2">{`月售${month_saled}份`}</div>
                 <div className="">{like_ratio_desc}</div>
             </div>
             {/* 下 */}
