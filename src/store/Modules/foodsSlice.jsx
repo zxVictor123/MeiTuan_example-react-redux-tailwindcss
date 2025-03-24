@@ -5,7 +5,7 @@ const foodsSlice = createSlice(
         name:'foods',
         initialState:{
             foodsList:[],
-            activeTag:0,
+            activeTag:318569657,
         },
         reducers:{
             renderFoodsList : (state,action) => {

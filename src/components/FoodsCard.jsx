@@ -1,3 +1,4 @@
+
 const FoodsCard = (props) => {
     const {foods} = props
     const {picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description} = foods
