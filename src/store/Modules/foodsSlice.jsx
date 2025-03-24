@@ -4,17 +4,21 @@ const foodsSlice = createSlice(
     {
         name:'foods',
         initialState:{
-            foodsList:[]
+            foodsList:[],
+            activeTag:0,
         },
         reducers:{
             renderFoodsList : (state,action) => {
                 state.foodsList = action.payload
+            },
+            changeActiveTag : (state,action) => {
+                state.activeTag = action.payload
             }
         }
     }
 )
-const {renderFoodsList} = foodsSlice.actions;
+const {renderFoodsList,changeActiveTag} = foodsSlice.actions;
 
-export {renderFoodsList}
+export {renderFoodsList,changeActiveTag}
 
 export default foodsSlice.reducer;

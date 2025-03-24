@@ -26,7 +26,7 @@ const OrderFoods = () => {
             <div className='bg-white w-3/4 overflow-auto'>
                 {
                   foodsList.length > 0 ? (allFoods.map((foods) => 
-                  <FoodsCard key = {foods.id} foods = {foods}/>)
+                  <FoodsCard key = {foods.id} id = {foods.id} foods = {foods}/>)
                 ):<div className='flex justify-center items-center h-full'><img src={loading}></img></div>
                 }
             </div>
