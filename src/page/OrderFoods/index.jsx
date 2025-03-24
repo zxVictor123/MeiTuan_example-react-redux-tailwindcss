@@ -4,6 +4,7 @@ import CategorizatonItem from '../../components/CategorizationItem';
 import FoodsCard from '../../components/FoodsCard';
 import BottomCart from '../../components/BottomCart';
 import { useSelector } from 'react-redux';
+import loading from '../../assets/loading.gif'
 const OrderFoods = () => {
   // 从store中获取foodsList数组
   const {foodsList} = useSelector((state)=>state.foods)
@@ -18,7 +19,7 @@ const OrderFoods = () => {
             <div className='w-1/4 bg-gray-200 flex flex-col items-center mr-2 overflow-auto'>
                 {foodsList.length > 0 ? (foodsList.map((category)=>
                 <CategorizatonItem key = {category.tag} tag = {category.tag} name = {category.name}/>
-                )):<p>加载中</p>
+                )):<div className='flex justify-center items-center h-full'><img src={loading}></img></div>
               }
             </div>
             {/* 渲染商品卡片的区域 */}
@@ -26,7 +27,7 @@ const OrderFoods = () => {
                 {
                   foodsList.length > 0 ? (allFoods.map((foods) => 
                   <FoodsCard key = {foods.id} foods = {foods}/>)
-                ):<p>加载中</p>
+                ):<div className='flex justify-center items-center h-full'><img src={loading}></img></div>
                 }
             </div>
             
