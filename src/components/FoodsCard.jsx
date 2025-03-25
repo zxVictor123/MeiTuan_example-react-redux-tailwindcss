@@ -1,7 +1,7 @@
 
 const FoodsCard = (props) => {
-    const {foods} = props
-    const {picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description} = foods
+    const {foodsObject} = props
+    const {picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description} = foodsObject
     return (
         // 卡片整体包裹，将卡片分割成左右两块
     <div id = {id} className="pl-2 pb-2 mb-2 flex bg-white w-full h-28 sm:h-28 md:h-32 lg:h-36">

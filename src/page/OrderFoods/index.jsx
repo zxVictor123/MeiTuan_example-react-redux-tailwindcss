@@ -1,34 +1,58 @@
 // page/OrderFood/index.jsx
-import React from 'react';
+import React,{useRef,useEffect} from 'react';
 import CategorizatonItem from '../../components/CategorizationItem';
 import FoodsCard from '../../components/FoodsCard';
 import BottomCart from '../../components/BottomCart';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
 import loading from '../../assets/loading.gif'
 const OrderFoods = () => {
   // 从store中获取foodsList数组
   const {foodsList} = useSelector((state)=>state.foods)
-  // 将所有的foods中的对象整合进allFoods数组
-  const allFoods = foodsList.flatMap((category) => category.foods)
+  // 创建操作不同食品分区的ref
+  const categoryRef = useRef(null)
+  const {activeTag} = useSelector((state) => state.foods)
+  useEffect(() => {
+    if (categoryRef.current) {
+      categoryRef.current.scrollIntoView({behavior:'smooth'});
+    }
+  }, [activeTag]);
   return (
     // 外层包裹中下两部分
-    <div className='flex h-full flex-col relative'>
+    <div className='flex h-9/10 flex-col relative '>
       {/* 中层部分，包括左侧边栏区和右侧食品卡片区 */}
         <div className='flex flex-row h-full '>
             {/* 渲染分类项的区域 */}
-            <div className='w-1/4 bg-gray-200 flex flex-col items-center mr-2 overflow-auto'>
-                {foodsList.length > 0 ? (foodsList.map((category)=>
-                <CategorizatonItem key = {category.tag} tag = {category.tag} name = {category.name}/>
-                )):<div className='flex justify-center items-center h-full'><img src={loading}></img></div>
+            <div className=' w-1/4  bg-gray-200 flex flex-col items-center mr-2 overflow-auto'>
+                {
+                //遍历foodsList以获取分类项
+                foodsList.length > 0 ? (foodsList.map((category)=>
+                <CategorizatonItem key = {category.tag} tag = {category.tag} name = {category.name}/>)
+                ) : <div className='flex justify-center items-center h-full'>
+                         <img src={loading}></img>
+                     </div>
               }
             </div>
             {/* 渲染商品卡片的区域 */}
-            <div className='bg-white w-3/4 overflow-auto'>
+            <div  className='bg-white w-3/4 overflow-auto'>
                 {
-                  foodsList.length > 0 ? (allFoods.map((foods) => 
-                  <FoodsCard key = {foods.id} id = {foods.id} foods = {foods}/>)
-                ):<div className='flex justify-center items-center h-full'><img src={loading}></img></div>
+                  foodsList.length > 0 ? (
+                    foodsList.map((category) => 
+                    // 遍历foodsList数组，得到分类项并渲染出此分类的整块区域
+                    <div ref = {(el) => {if(activeTag===category.tag) {categoryRef.current = el}}} key = {category.tag} tag = {category.tag} className='flex flex-col'>
+                        <div className='py-1 pl-6 font-black text-xs sm:text-sm md:text-base lg:text-lg '>{category.name}</div>
+                        <div>
+                            {
+                              category.foods.map((foodsObject) =>
+                              // 遍历此类别的foods数组，得到每一个foods对象并渲染进此分类的整块区域
+                              <FoodsCard key = {foodsObject.id} foodsObject = {foodsObject}/>)
+                              }
+                        </div>
+                    </div>)
+                  ) : <div className='flex justify-center items-center h-full'>
+                        <img src={loading}></img>
+                    </div>
                 }
+                <div className='pb-18 text-center md:pb-20 lg:pb-22'>已经到底了~</div>
             </div>
             
         </div>
