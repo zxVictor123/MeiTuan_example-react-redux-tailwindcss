@@ -6,6 +6,7 @@ const foodsSlice = createSlice(
         initialState:{
             foodsList:[],
             activeTag:318569657,
+            cartList:[],
         },
         reducers:{
             renderFoodsList : (state,action) => {
@@ -13,12 +14,19 @@ const foodsSlice = createSlice(
             },
             changeActiveTag : (state,action) => {
                 state.activeTag = action.payload
+            },
+            addCartList : (state,action) => {
+                const item = state.cartList.find((item) => item.id === action.payload.id)
+                if(item)
+                {item.count ++}
+                else
+                {state.cartList.push(action.payload)}
             }
         }
     }
 )
-const {renderFoodsList,changeActiveTag} = foodsSlice.actions;
+const {renderFoodsList,changeActiveTag,addCartList} = foodsSlice.actions;
 
-export {renderFoodsList,changeActiveTag}
+export {renderFoodsList,changeActiveTag,addCartList}
 
 export default foodsSlice.reducer;

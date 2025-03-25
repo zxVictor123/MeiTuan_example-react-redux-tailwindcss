@@ -52,13 +52,13 @@ const OrderFoods = () => {
                         <img src={loading}></img>
                     </div>
                 }
-                <div className='pb-18 text-center md:pb-20 lg:pb-22'>已经到底了~</div>
+                <div className='pb-20 text-center md:pb-22 lg:pb-24'>已经到底了~</div>
             </div>
             
         </div>
         {/* 底部购物车 */}
         <div className='fixed inset-x-0 z-10 bottom-0'>
-            <BottomCart/>
+            <BottomCart />
         </div>
     </div>
   );
