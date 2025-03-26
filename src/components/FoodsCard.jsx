@@ -7,14 +7,14 @@ const FoodsCard = (props) => {
     const {picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description,tag,count} = foodsObject
     return (
         // 卡片整体包裹，将卡片分割成左右两块
-    <div id = {id} className="pl-2 pb-2 mb-2 flex bg-white w-full h-28 sm:h-28 md:h-32 lg:h-36">
+    <div id = {id} className="pl-2 pb-2 mb-2 flex bg-white w-full h-30 sm:h-32 md:h-34 lg:h-36">
         {/* 左侧图片 */}
         <img  src = {picture} className=" rounded-lg aspect-square h-full"></img>
         {/* 右侧区域分为上中下三区域 */}
-        <div className="h-full text-xs p-1 sm:text-xs md:text-xs lg:text-sm w-full">
+        <div className="h-full text-xs p-1 sm:text-xs md:text-xs lg:text-sm flex-1 w-1">
             {/* 上 */}
             <div className="flex flex-col justify-center h-3/5 ">
-                <h1 className="text-sm sm:text-sm md:text-xl lg:text-2xl font-black">{name}</h1>
+                <h1 className="text-sm sm:text-sm md:text-xl lg:text-2xl font-black ">{name}</h1>
                 <div className="flex">
                     <span className="bg-gray-100 font-black whitespace-nowrap">{unit}</span>
                     <div className="whitespace-nowrap overflow-hidden text-ellipsis">{description}</div>
