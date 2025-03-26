@@ -3,11 +3,23 @@ import React,{useRef,useEffect} from 'react';
 import CategorizatonItem from '../../components/CategorizationItem';
 import FoodsCard from '../../components/FoodsCard';
 import BottomCart from '../../components/BottomCart';
-import { useSelector} from 'react-redux';
+import { useSelector,useDispatch} from 'react-redux';
 import loading from '../../assets/loading.gif'
+import FetchFoodsList from '../../store/Thunks/FetchFoodsList';
+import { changeActiveTag } from '../../store/Modules/foodsSlice';
+
 const OrderFoods = () => {
-  // 从store中获取foodsList数组
-  const {foodsList} = useSelector((state)=>state.foods)
+  // 调用获取后端数据的action creator，以初始化foodsList
+  const dispatch = useDispatch()
+  useEffect(()=>{dispatch(FetchFoodsList())},[dispatch])
+   // 从store中获取foodsList数组
+   const {foodsList} = useSelector((state)=>state.foods)
+  // 从foodsList里获取第一个category的tag，以初始化activeTag
+  useEffect(() => {
+    if (foodsList.length > 0) {
+      dispatch(changeActiveTag(foodsList[0].tag));
+    }
+  }, [dispatch, foodsList]);
   // 创建操作不同食品分区的ref
   const categoryRef = useRef(null)
   const {activeTag} = useSelector((state) => state.foods)

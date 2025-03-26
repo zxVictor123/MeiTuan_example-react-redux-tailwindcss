@@ -31,7 +31,7 @@ const FoodsCard = (props) => {
             {/* 下 */}
             <div className="flex h-1/5 justify-between items-center pr-4">
                 <h2 className="text-sm sm:text-sm md:text-xl lg:text-2xl font-black">{`￥${price}`}</h2>
-                <button onClick={() => dispatch(addCartList({picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description,tag,count}))} className="bg-yellow-500 text-black w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 px-2 py-1  rounded-full font-semibold shadow-md hover:bg-yellow-600 transition-colors flex items-center justify-center">
+                <button onClick={() => dispatch(addCartList({picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description,tag,count}))} className="bg-yellow-500 text-black w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 rounded-full font-semibold shadow-md hover:bg-yellow-600 transition-colors flex items-center justify-center">
                     <span className="text-lg md:text-xl lg:text-2xl">+</span>
                 </button>
             </div>

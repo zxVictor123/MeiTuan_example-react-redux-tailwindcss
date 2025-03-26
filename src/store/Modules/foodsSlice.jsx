@@ -5,7 +5,7 @@ const foodsSlice = createSlice(
         name:'foods',
         initialState:{
             foodsList:[],
-            activeTag:318569657,
+            activeTag:0,
             cartList:[],
         },
         reducers:{
