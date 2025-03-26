@@ -6,21 +6,21 @@ const BottomCart = () => {
     const totalCount = cartList.length > 0 ? (cartList.map((foodsObject) => foodsObject.count).reduce((accumulator,currentValue) => accumulator + currentValue,0)):0
     const totalPrice = cartList.length > 0 ? (cartList.map((foodsObject) => foodsObject.price * foodsObject.count).reduce((accumulator,currentValue) => accumulator + currentValue,0)):0
     return (
-    // 购物车总体外层包裹分为 “购物车列表区域” 和 “购物车底部统计结算区域”
+    // 购物车总体外层包裹分为 “购物车展开区域” 和 “购物车底部统计结算区域”
     <div className="flex flex-col bg-white justify-between rounded-md">
-        {/* 购物车列表区域 */}
+        {/* 购物车展开区域 */}
         <div className="max-h-96 overflow-auto">
-            {/* 顶部 */}
-            <div className="flex justify-between items-center border-b-1 py-2 ">
+            {/* 顶部区*/}
+            <div className="flex justify-between items-center border-b-1 py-2 text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8">
                 <div className="font-black">购物车</div>
                 <div className="text-gray-600 pb-1">清空购物车</div>
             </div>
-            {/* 内容区 */}
+            {/* 列表区 */}
             {/* 遍历购物车列表渲染列表项 */}
             {cartList.map((foodsObject) =>
-            <div className="flex py-2">
+            <div className="flex py-2 px-2 sm:px-4 md:px-6 lg:px-8">
                 {/* 左侧图片 */}
-                <div className=" flex justify-center items-center"><img src = {foodsObject.picture} className="rounded-2xl aspect-square h-16 sm:h-20 md:h-24 lg:h-28"></img></div>
+                <img src = {foodsObject.picture} className="rounded-xl aspect-square h-16 sm:h-20 md:h-24 lg:h-28"></img>
                 {/* 右侧区域 */}
                 <div className="flex flex-col justify-between flex-1 w-1">
                     {/* 上*/}
