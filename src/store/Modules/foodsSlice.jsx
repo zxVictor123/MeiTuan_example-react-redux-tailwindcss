@@ -29,6 +29,9 @@ const foodsSlice = createSlice(
             switchIsCartListDisplay : (state) => {
                 state.isCartListDisplay = !state.isCartListDisplay
             },
+            setIsCartListDisplay: (state) => {
+                state.isCartListDisplay = false
+            },
             addFoodsObjectCount : (state,action) => {
                 state.cartList.find((foodsObject) => foodsObject.id === action.payload).count++
             },
@@ -41,8 +44,8 @@ const foodsSlice = createSlice(
         }
     }
 )
-const {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount} = foodsSlice.actions;
+const {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount,setIsCartListDisplay} = foodsSlice.actions;
 
-export {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount}
+export {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount,setIsCartListDisplay}
 
 export default foodsSlice.reducer;

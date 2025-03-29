@@ -1,12 +1,13 @@
 import { useSelector,useDispatch} from "react-redux"
-import { clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount } from "../store/Modules/foodsSlice"
+import { clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount,setIsCartListDisplay } from "../store/Modules/foodsSlice"
+import { useEffect } from "react"
 const BottomCart = () => {
     const {cartList,isCartListDisplay} = useSelector((state) => state.foods)
     // 计算总数量和总价格
     const totalCount = cartList.length > 0 ? (cartList.map((foodsObject) => foodsObject.count).reduce((accumulator,currentValue) => accumulator + currentValue,0)):0
     const totalPrice = cartList.length > 0 ? (cartList.map((foodsObject) => foodsObject.price * foodsObject.count).reduce((accumulator,currentValue) => accumulator + currentValue,0)):0
     const dispatch = useDispatch()
-
+    useEffect(() => {if (cartList.length == 0) {dispatch(setIsCartListDisplay())} },[cartList,dispatch])
     return (
     // 购物车总体外层包裹分为 “上方展开区” 和 “底部购物栏”
     <div className="flex flex-col justify-between rounded-md">
@@ -32,7 +33,7 @@ const BottomCart = () => {
                     <div className="flex flex-col justify-between flex-1 w-1">
                         {/* 上：名称*/}
                         <div className="text-base sm:text-lg md:text-xl lg:text-3xl font-black">{foodsObject.name}</div>
-                        {/* 下:价格和数量及按钮 */}
+                        {/* 下:价格和数量及加减按钮 */}
                         <div className="flex justify-between">
                             <div className="text-red-600 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">{`￥${(foodsObject.price * foodsObject.count).toFixed(2)}`}</div>
                             <div className="flex items-center">
