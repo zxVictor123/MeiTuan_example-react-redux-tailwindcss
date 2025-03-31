@@ -8,6 +8,8 @@ const foodsSlice = createSlice(
             activeTag:0,
             cartList:[],
             isCartListDisplay:false,
+            searchContent:'',
+            activeFoodsObjectId:0,
         },
         reducers:{
             renderFoodsList : (state,action) => {
@@ -40,12 +42,41 @@ const foodsSlice = createSlice(
                 if (currentCount > 1 )
                 {state.cartList.find((foodsObject) => foodsObject.id ===action.payload).count--}
                 else {state.cartList = state.cartList.filter((foodsObject) => foodsObject.id != action.payload)}
+            },
+            getSearchContent : (state,action) => {
+                state.searchContent = action.payload
+            },
+            changeActiveFoodsObjectId : (state,action) => {
+                state.activeFoodsObjectId =action.payload
             }
         }
     }
 )
-const {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount,setIsCartListDisplay} = foodsSlice.actions;
-
-export {renderFoodsList,changeActiveTag,addCartList,clearCartList,switchIsCartListDisplay,addFoodsObjectCount,subtractFoodsObjectCount,setIsCartListDisplay}
-
+// 解构出action creator 
+const {
+        renderFoodsList,
+        changeActiveTag,
+        addCartList,
+        clearCartList,
+        switchIsCartListDisplay,
+        addFoodsObjectCount,
+        subtractFoodsObjectCount,
+        setIsCartListDisplay,
+        getSearchContent,
+        changeActiveFoodsObjectId
+      } = foodsSlice.actions;
+// 导出
+export {
+        renderFoodsList,
+        changeActiveTag,
+        addCartList,
+        clearCartList,
+        switchIsCartListDisplay,
+        addFoodsObjectCount,
+        subtractFoodsObjectCount,
+        setIsCartListDisplay,
+        getSearchContent,
+        changeActiveFoodsObjectId
+       }
+// 导出所有reducer
 export default foodsSlice.reducer;

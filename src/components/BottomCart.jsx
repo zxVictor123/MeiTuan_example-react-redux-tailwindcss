@@ -67,10 +67,22 @@ const BottomCart = () => {
                         </div>
                     </div>
             </div>
-            {/* 右: */}
-            {totalPrice > 0
-            ? (totalPrice > 20 || totalPrice == 20 ? <div className="w-20 sm:w-24 md:w-28 lg:w-36 flex items-center justify-center text-base md:text-lg lg:text-2xl bg-amber-300 text-black font-semibold">去结算</div> : <div className="w-24 sm:w-28 md:w-32 lg:w-40 flex items-center justify-center text-base md:text-lg lg:text-2xl text-black bg-amber-300 font-black">{`差￥${20-totalPrice}元起送`}</div> )
-            :<div className="w-20 sm:w-24 md:w-28 lg:w-36 flex items-center justify-center text-base md:text-lg lg:text-2xl">￥20起送</div>}
+            {/* 右: 嵌套三元判定“初始，差钱，结算”三种状态*/}
+            {
+                totalPrice > 0
+                    ? (
+                        totalPrice > 20 || totalPrice == 20 
+                        ? <div className="w-20 sm:w-24 md:w-28 lg:w-36 flex items-center justify-center text-base md:text-lg lg:text-2xl bg-amber-300 text-black font-semibold">
+                            去结算
+                          </div> 
+                        : <div className="w-24 sm:w-28 md:w-32 lg:w-40 flex items-center justify-center text-base md:text-lg lg:text-2xl text-black bg-amber-200 font-bold">
+                            {`差￥${20-totalPrice}元起送`}
+                          </div> 
+                      )
+                    : <div className="w-20 sm:w-24 md:w-28 lg:w-36 flex items-center justify-center text-base md:text-lg lg:text-2xl">
+                        ￥20起送
+                      </div>
+             }
         </div>
     </div>
 

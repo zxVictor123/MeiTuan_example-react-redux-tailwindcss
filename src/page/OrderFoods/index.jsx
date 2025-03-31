@@ -5,22 +5,19 @@ import FoodsCard from '../../components/FoodsCard';
 import BottomCart from '../../components/BottomCart';
 import { useSelector,useDispatch} from 'react-redux';
 import loading from '../../assets/loading.gif'
-import FetchFoodsList from '../../store/Thunks/FetchFoodsList';
 import { changeActiveTag } from '../../store/Modules/foodsSlice';
 
 const OrderFoods = () => {
-  // 调用获取后端数据的action creator，以初始化foodsList
   const dispatch = useDispatch()
-  useEffect(()=>{dispatch(FetchFoodsList())},[dispatch])
-   // 从store中获取foodsList数组
-   const {foodsList} = useSelector((state)=>state.foods)
-  // 从foodsList里获取第一个category的tag，以初始化activeTag
+  // 从store中获取foodsList数组
+  const {foodsList} = useSelector((state)=>state.foods)
+  // 初始化activeTag
   useEffect(() => {
     if (foodsList.length > 0) {
       dispatch(changeActiveTag(foodsList[0].tag));
     }
   }, [dispatch, foodsList]);
-  // 创建操作不同食品分区的ref
+  // 创建操作不同食品分区的ref，并完成点击定位动作
   const categoryRef = useRef(null)
   const {activeTag} = useSelector((state) => state.foods)
   useEffect(() => {
@@ -28,6 +25,14 @@ const OrderFoods = () => {
       categoryRef.current.scrollIntoView({behavior:'smooth'});
     }
   }, [activeTag]);
+  // 创建操作不同食物对象的ref，并完成点击定位动作
+  const foodsObjectRef = useRef(null)
+  const {activeFoodsObjectId} = useSelector((state) => state.foods)
+  useEffect (() => {
+    if (foodsObjectRef.current) {
+      foodsObjectRef.current.scrollIntoView({behavior:'smooth'})
+    }
+  },[activeFoodsObjectId])
   return (
     // 外层包裹中下两部分
     <div className='flex h-9/10 flex-col relative '>
@@ -47,7 +52,8 @@ const OrderFoods = () => {
             {/* 渲染商品卡片的区域 */}
             <div  className='bg-white w-3/4 overflow-auto'>
                 {
-                  foodsList.length > 0 ? (
+                  foodsList.length > 0 
+                  ? (
                     foodsList.map((category) => 
                     // 遍历foodsList数组，得到分类项并渲染出此分类的整块区域
                     <div ref = {(el) => {if(activeTag===category.tag) {categoryRef.current = el}}} key = {category.tag} tag = {category.tag} className='flex flex-col'>
@@ -56,20 +62,23 @@ const OrderFoods = () => {
                             {
                               category.foods.map((foodsObject) =>
                               // 遍历此类别的foods数组，得到每一个foods对象并渲染进此分类的整块区域
-                              <FoodsCard key = {foodsObject.id} foodsObject = {foodsObject}/>)
+                              <FoodsCard ref = {(el) => {if (activeFoodsObjectId === foodsObject.id) foodsObjectRef.current = el}} key = {foodsObject.id} foodsObject = {foodsObject}/>)
                               }
                         </div>
-                    </div>)
-                  ) : <div className='flex justify-center items-center h-full'>
+                    </div>) 
+                  ) 
+                  // 加载图
+                  : <div className='flex justify-center items-center h-full'>
                         <img src={loading}></img>
                     </div>
                 }
-                <div className='pb-20 text-center md:pb-22 lg:pb-24'>已经到底了~</div>
+                {/* 底部空白 */}
+                <div className='flex justify-center items-center h-105 md:h-115 lg:h-125'>已经到底了~</div>
             </div>
             
         </div>
         {/* 底部购物车 */}
-        <div className='fixed inset-x-0 bottom-0 z-10'>
+        <div className='fixed inset-x-0 bottom-0 z-2'>
             <BottomCart />
         </div>
     </div>
