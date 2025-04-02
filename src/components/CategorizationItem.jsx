@@ -1,12 +1,12 @@
-import { useDispatch,useSelector} from "react-redux"
-import { changeActiveTag } from "../store/Modules/foodsSlice"
+import { useDispatch} from "react-redux"
+import { changeActiveTag,switchIsClickCategory } from "../store/Modules/foodsSlice"
+import React from "react"
 
-const CategorizatonItem = (props) => {
+const CategorizatonItem = React.forwardRef((props,ref) => {
     const {tag,name} = props
     const dispatch = useDispatch()
-    const {activeTag} = useSelector((state) => state.foods)
     return (
-        <button onClick={() => dispatch(changeActiveTag(tag))} className={`w-full py-6 text-gray-600 text-sm sm:text-lg md:text-lg lg:text-xl ${tag===activeTag&&'font-black bg-white'}`}>{name}</button>
+        <button onClick={() => {dispatch(changeActiveTag(tag)); dispatch(switchIsClickCategory())}} ref={ref} className="w-full py-6 text-gray-600 text-sm sm:text-lg md:text-lg lg:text-xl">{name}</button>
     )
-}
+})
 export default CategorizatonItem

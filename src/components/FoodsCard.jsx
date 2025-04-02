@@ -2,14 +2,14 @@ import { addCartList } from "../store/Modules/foodsSlice"
 import { useDispatch,useSelector } from "react-redux"
 import React from "react"
 // 继承父组件传来的props和ref
-const FoodsCard = React.forwardRef((props,foodsObjectRef) => {
+const FoodsCard = React.forwardRef((props,ref) => {
     const dispatch = useDispatch()
     const {foodsObject} = props
     const {picture,id,name,like_ratio_desc,month_saled,unit,food_tag_list,price,description,tag,count} = foodsObject
     const {activeFoodsObjectId} = useSelector((state) => state.foods)
     return (
         // 卡片整体包裹，将卡片分割成左右两块
-    <div id = {id} ref={foodsObjectRef} className = {`pl-2 pb-2 mb-2 flex rounded-md w-full h-30 sm:h-32 md:h-34 lg:h-36 ${activeFoodsObjectId === id ? 'bg-amber-200' :'bg-white'}`}>
+    <div id = {id} ref={ref} className = {`pl-2 pb-2 mb-2 flex rounded-md w-full h-30 sm:h-32 md:h-34 lg:h-36 ${activeFoodsObjectId === id ? 'bg-amber-200' :'bg-white'}`}>
         {/* 左侧图片 */}
         <img  src = {picture} className=" rounded-lg aspect-square h-full"></img>
         {/* 右侧区域分为上中下三区域 */}

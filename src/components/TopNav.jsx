@@ -16,6 +16,7 @@ const TopNav = () => {
             if (timer) {
                 clearTimeout(timer)
             }
+            // fn外加匿名函数包裹的原因：首先fn调用时需要传参，就必须写括号，写了括号就代表立即调用了，所以用一个匿名函数包裹，等到计时结束再调用匿名函数进而调用它
             timer = setTimeout(function () {
                 fn(...args)
             },t)

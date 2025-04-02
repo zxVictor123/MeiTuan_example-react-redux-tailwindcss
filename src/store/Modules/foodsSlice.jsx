@@ -2,16 +2,17 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const foodsSlice = createSlice(
     {
-        name:'foods',
-        initialState:{
-            foodsList:[],
-            activeTag:0,
-            cartList:[],
-            isCartListDisplay:false,
-            searchContent:'',
-            activeFoodsObjectId:0,
+        name: 'foods',
+        initialState: {
+            foodsList: [],
+            activeTag: 0,
+            cartList: [],
+            isCartListDisplay: false,
+            searchContent: '',
+            activeFoodsObjectId: 0,
+            isClickCategory: false,
         },
-        reducers:{
+        reducers: {
             renderFoodsList : (state,action) => {
                 state.foodsList = action.payload
             },
@@ -48,7 +49,10 @@ const foodsSlice = createSlice(
             },
             changeActiveFoodsObjectId : (state,action) => {
                 state.activeFoodsObjectId =action.payload
-            }
+            },
+            switchIsClickCategory: (state) => {
+                state.isClickCategory = !state.isClickCategory
+            },
         }
     }
 )
@@ -63,7 +67,8 @@ const {
         subtractFoodsObjectCount,
         setIsCartListDisplay,
         getSearchContent,
-        changeActiveFoodsObjectId
+        changeActiveFoodsObjectId,
+        switchIsClickCategory
       } = foodsSlice.actions;
 // 导出
 export {
@@ -76,7 +81,8 @@ export {
         subtractFoodsObjectCount,
         setIsCartListDisplay,
         getSearchContent,
-        changeActiveFoodsObjectId
+        changeActiveFoodsObjectId,
+        switchIsClickCategory
        }
 // 导出所有reducer
 export default foodsSlice.reducer;
