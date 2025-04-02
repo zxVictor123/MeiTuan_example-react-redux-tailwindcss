@@ -131,7 +131,7 @@ const OrderFoods = () => {
                             </div>
                         </div>
                         {/* 给每个分区间设置的间隔，防止两分区交界在root边界 */}
-                        <div className='w-full h-2 bg-black'></div>
+                        <div className='w-full h-2 bg-white'></div>
                     </div>
                     ) 
                   ) 
