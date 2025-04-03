@@ -11,7 +11,6 @@ const foodsSlice = createSlice(
             searchContent: '',
             activeFoodsObjectId: 0,
             isClickCategory: false,
-            activeTopNavId: 1,
         },
         reducers: {
             renderFoodsList : (state,action) => {
@@ -54,9 +53,6 @@ const foodsSlice = createSlice(
             switchIsClickCategory: (state) => {
                 state.isClickCategory = !state.isClickCategory
             },
-            changeActiveTopNavId: (state,action) => {
-                state.activeTopNavId = action.payload
-            }
         }
     }
 )
@@ -73,7 +69,6 @@ const {
         getSearchContent,
         changeActiveFoodsObjectId,
         switchIsClickCategory,
-        changeActiveTopNavId,
       } = foodsSlice.actions;
 // 导出
 export {
@@ -88,7 +83,6 @@ export {
         getSearchContent,
         changeActiveFoodsObjectId,
         switchIsClickCategory,
-        changeActiveTopNavId,
        }
 // 导出所有reducer
 export default foodsSlice.reducer;

@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { getSearchContent, changeActiveTag, changeActiveFoodsObjectId, changeActiveTopNavId } from "../store/Modules/foodsSlice";
+import { getSearchContent, changeActiveTag, changeActiveFoodsObjectId} from "../store/Modules/foodsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const TopNav = () => {
@@ -43,7 +43,6 @@ const TopNav = () => {
             className={`w-1/3 relative ${location.pathname === item.path ? 'text-black transform duration-300' : ''}`}
             onClick={() => {
               navigate(item.path);
-              dispatch(changeActiveTopNavId(item.id));
             }}
             aria-current={location.pathname === item.path ? 'page' : undefined}
           >
