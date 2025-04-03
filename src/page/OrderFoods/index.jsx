@@ -38,9 +38,8 @@ const OrderFoods = () => {
 // 点击分类项滚动到指定食品分区
   useEffect(() => {
     if (isClickCategory && foodsPartitionRef.current[activeTag]) {
-      foodsPartitionRef.current[activeTag].scrollIntoView({behavior:'smooth'});
-      // 将isClickCategory切换回false
-      setTimeout(() => dispatch(switchIsClickCategory()),500)
+      foodsPartitionRef.current[activeTag].scrollIntoView();
+      dispatch(switchIsClickCategory())
     }
   }, [activeTag,isClickCategory,dispatch]);
 
@@ -118,7 +117,7 @@ const OrderFoods = () => {
                   ? (
                     foodsList.map((category) => 
                     // 遍历foodsList数组，得到类别并渲染出此分类的食品分区
-                    <div>
+                    <div key = {`${category.tag}+'1'`}>
                       <div ref = {(el) => {foodsPartitionRef.current[category.tag] = el}} data-tag = {category.tag} key = {category.tag} tag = {category.tag} className='flex flex-col'>
                       {/* 分区名 */}
                         <div className='sticky top-0 py-1 pl-6 font-black text-xs sm:text-sm md:text-base lg:text-lg bg-white'>{category.name}</div>
@@ -131,7 +130,7 @@ const OrderFoods = () => {
                             </div>
                         </div>
                         {/* 给每个分区间设置的间隔，防止两分区交界在root边界 */}
-                        <div className='w-full h-2 bg-white'></div>
+                        <div key = {`${category.tag}+'2'`} className='w-full h-2 bg-white'></div>
                     </div>
                     ) 
                   ) 
